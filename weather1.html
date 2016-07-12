@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html ng-app="weather">
+  <head>
+ 
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" /> 
+   <link href="css/weather.css" rel="stylesheet" /></head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.11/angular.min.js"></script>
+<script type="text/javascript" src="weather.js"></script>
+<div ng-controller="WeatherForecastCtrl" ng-app="weather">		
+
+
+  <div class="input">				
+    <label for="city">Enter your city</label>
+    <input type="text" ng-model="city" autofocus placeholder="Your city" id="city" onblur="if(!/^[A-Z][a-z]*/.test(this.value) && this.value != '') {alert('Error! Use English letters!'); this.value='';}" />
+ <span ng-show="city">{{loc.city.coord.lon}}; {{loc.city.coord.lat}}</span>
+  </div>
+ 
+  <div class="forecast">
+  <center>
+  <h1 ng-show="city">Weather in {{city}}, {{loc.city.country}} </h1>
+  
+    <div ng-repeat-start="day in forecast" ng-if="$first" ng-show="city" class="today" class="ff">
+      <h2>
+        <div id='day'>Today</div>
+        <img ng-src="http://openweathermap.org/img/w/{{day.weather[0].icon}}.png">{{day.weather[0].main}}
+        <span ><br />{{day.temp.day | number: 0}}&degC</span>
+       
+        <br>{{day.humidity}}%
+        <span ><br>{{day.speed | number: 2}} km/h</span>
+      </h2>
+    </div>
+
+    <div ng-repeat-end ng-show="city" ng-if="!first" class="ff">
+      <h3>
+        <div id='day'>{{day.dt *1000 | date: 'EEEE'}}</div>
+        <img ng-src="http://openweathermap.org/img/w/{{day.weather[0].icon}}.png">{{day.weather[0].main}}
+        <span ><br>{{day.temp.day| number: 0}}&degC</span>
+   
+        <br>{{day.humidity}}%
+        <span ><br>{{day.speed | number: 2}} km/h</span>
+      </h3>
+    </div>
+
+  </div>
+  </center>
+</div>
+<br />
+<footer>
+  Uses the Open Weather Map API
+</footer>
+  </html>
