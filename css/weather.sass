@@ -1,0 +1,38 @@
+$fontFamily: Tahoma, sans-serif
+$fontSize: 16px
+$background: url(images/image1.jpg) no-repeat center center fixed
+$colortext: #2C3D24
+.ff
+	display:inline-block
+
+.forecast
+	font-family: $fontFamily
+	font-size: $fontSize
+	background: $background
+	background-size: cover
+	border-radius: 25px
+	border: 2px solid #000000
+.input
+	width: 200px
+	margin: auto
+	opacity: 0.9
+label
+	color: $colortext
+input
+	border-radius: 6px
+	font-size: $fontSize
+	border: 1
+.ff, .today
+	opacity: 0.7
+	background: #F2FCF8
+	border-radius: 25px
+	border: 2px solid #f0f0f0
+
+@media all and (max-width: 700px)
+	div
+		display: block
+
+@media all and (min-width: 700px)
+	.ff, .today
+		display: inline-block
+		width: 150px
